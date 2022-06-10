@@ -16,7 +16,7 @@ BUNDLE_ZIP=$OUTPUT_DIR/bundle.zip
 CERT_KEYSTORES_ZIP=$OUTPUT_DIR/cert_keystores.zip
 HTTP_ZIP=$OUTPUT_DIR/http.zip
 
-apt-get install unzip openssl -y
+apt-get -y update && apt-get install -y --no-install-recommends unzip openssl && rm -rf /var/lib/apt/lists/*
 
 create_self_signed_ca()
 {
