@@ -1,3 +1,3 @@
-ARG ELK_VERSION
+ARG KIBANA_VERSION
 
-FROM docker.elastic.co/kibana/kibana:${ELK_VERSION}
+FROM docker.elastic.co/kibana/kibana:${KIBANA_VERSION}

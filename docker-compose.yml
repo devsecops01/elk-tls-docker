@@ -92,7 +92,7 @@ services:
     build:
       context: kibana/
       args:
-        ELK_VERSION: $ELK_VERSION
+        KIBANA_VERSION: $KIBANA_VERSION
     restart: unless-stopped
     volumes:
       - ./kibana/config/kibana.yml:${KIBANA_DIR}/config/kibana.yml:ro
