@@ -5,7 +5,6 @@ __pycache__/
 
 secrets/*
 *.DS_Store
-.env
 
 # C extensions
 *.so
