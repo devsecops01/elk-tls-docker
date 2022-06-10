@@ -118,7 +118,7 @@ services:
       - "5601:5601"
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - elasticsearch
 
   logstash:
@@ -160,10 +160,10 @@ services:
     - "9600:9600"
     - "5000:5000/tcp"
     - "5000:5000/udp"
-    depends_on: 
+    depends_on:
       - elasticsearch
       - kibana
-  
+
   packetbeat:
     container_name: packetbeat
     hostname: packetbeat
@@ -173,7 +173,7 @@ services:
       args:
         ELK_VERSION: $ELK_VERSION
     restart: unless-stopped
-    cap_add: 
+    cap_add:
       - NET_ADMIN
       - NET_RAW
     command: packetbeat -e -strict.perms=false
@@ -194,7 +194,7 @@ services:
       target: ${PACKETBEAT_DIR}/config/packetbeat.key
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
 
   metricbeat:
@@ -206,7 +206,7 @@ services:
       args:
         ELK_VERSION: $ELK_VERSION
     restart: unless-stopped
-    cap_add: 
+    cap_add:
       - NET_ADMIN
       - NET_RAW
     command:
@@ -232,7 +232,7 @@ services:
         target: ${METRICBEAT_DIR}/config/metricbeat.key
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
       - kibana
 
@@ -246,7 +246,7 @@ services:
     restart: unless-stopped
     command: >
       sh -c "filebeat -e"
-    volumes: 
+    volumes:
       - ./filebeat/config/filebeat.yml:${FILEBEAT_DIR}/filebeat.yml:ro
     environment:
       CONFIG_DIR: ${FILEBEAT_DIR}/config
@@ -261,10 +261,10 @@ services:
       - source: filebeat.key
         target: ${FILEBEAT_DIR}/config/filebeat.key
     ports:
-      - "9000:9000" 
+      - "9000:9000"
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
 
   elastic-agent:
@@ -289,10 +289,10 @@ services:
       - source: ca.crt
         target: /ca.crt
     ports:
-      - "22:22" 
+      - "22:22"
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
 
 networks:
