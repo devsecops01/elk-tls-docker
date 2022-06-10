@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - elasticsearch
       - kibana
 
@@ -134,7 +134,7 @@ services:
       - "5601:5601"
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - elasticsearch
 
   logstash:
@@ -168,15 +168,15 @@ services:
     networks:
       - elk
     expose:
-     - 12201/udp
-     - 5044
-     - 9600
-     - 5000/tcp
-     - 5000/udp
-    depends_on: 
+      - "12201/udp"
+      - 5044
+      - 9600
+      - "5000/tcp"
+      - "5000/udp"
+    depends_on:
       - elasticsearch
       - kibana
-  
+
   packetbeat:
     container_name: packetbeat
     hostname: packetbeat
@@ -186,7 +186,7 @@ services:
       args:
         ELK_VERSION: $ELK_VERSION
     restart: unless-stopped
-    cap_add: 
+    cap_add:
       - NET_ADMIN
       - NET_RAW
     command: packetbeat -e -strict.perms=false
@@ -207,9 +207,9 @@ services:
         target: ${PACKETBEAT_DIR}/config/packetbeat.key
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
-  
+
   metricbeat:
     container_name: metricbeat
     hostname: metricbeat
@@ -219,7 +219,7 @@ services:
       args:
         ELK_VERSION: $ELK_VERSION
     restart: unless-stopped
-    cap_add: 
+    cap_add:
       - NET_ADMIN
       - NET_RAW
     command:
@@ -245,7 +245,7 @@ services:
         target: ${METRICBEAT_DIR}/config/metricbeat.key
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
 
   filebeat:
@@ -273,7 +273,7 @@ services:
       - 9000
     networks:
       - elk
-    depends_on: 
+    depends_on:
       - logstash
 
 networks:
