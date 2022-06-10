@@ -2,7 +2,7 @@ ARG ELK_VERSION
 
 FROM amd64/ubuntu:20.04
 
-RUN apt-get update && \
+RUN apt-get update --no-install-recommends && \
     apt-get -y install sudo && \
     apt-get -y install python3-pip python3
 
